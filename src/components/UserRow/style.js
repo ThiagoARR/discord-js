@@ -1,0 +1,56 @@
+import styled from 'styled-components'
+import {Check} from 'styled-icons/boxicons-regular';
+
+export const User = styled.div`
+margin-top: 5px;
+padding: 5px;
+display: flex;
+align-items: center;
+cursor: pointer;
+border-radius: 4px;
+background: transparent;
+transition: background 0.2s;
+&:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+> strong {
+  margin-left: 13px;
+  font-weight: 300;
+  color: var(--white);
+  opacity: 0.7;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 14px;
+}
+> span {
+    text-align: center;
+  display:flex;
+  align-items: center;
+  margin-left: 9px;
+  background-color: var(--discord);
+  color: var(--white);
+  border-radius: 4px;
+  padding: 4px 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 11px;
+}
+`;
+
+export const Avatar = styled.div`
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  &.bot {
+    background-color: var(--mention-detail);
+  }
+`;
+
+export const Verificado = styled(Check)`
+  width: 12px;
+  height: 12px;
+  color: var(--white);
+`

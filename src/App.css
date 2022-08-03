@@ -1,0 +1,166 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Uni Sans';
+}
+
+
+
+.modal-create-channel{
+  background-color: rgb(54,57,63) !important;
+  color: var(--white) !important;
+  font-size: 12px !important;
+}
+
+.modal-content{
+  border: 0x !important;
+  border-radius: 12px !important;
+}
+
+.modal-header-content{
+  align-items: baseline !important;
+}
+
+.modal-footer-content, .modal-header-content{
+  border: none !important;
+}
+
+.modal-footer-content{
+  background-color: rgb(47,49,54) !important;
+}
+
+.modal-title-content {
+  padding: 8px !important;
+}
+.modal-title-content h2{
+  font-size: 20px;
+  margin-bottom: 3px;
+}
+
+.modal-title-content div{
+  font-size: 12px;
+  color: var(--gray);
+  font-weight: 700;
+}
+
+.modal-body{
+  padding: 0px 16px 0px 16px !important;
+}
+
+.modal-body-content-wrap-margin{
+  margin-bottom: 20px;
+}
+
+.modal-body-text-wrap{
+  display: flex;
+  align-items: center;
+}
+
+.modal-body-select-margin{
+  margin-bottom: 8px;
+}
+
+.modal-body-text-wrap svg{
+  margin-right: 12px;
+  width: 36px;
+  height: 20px;
+}
+
+.modal-body-text-description{
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--gray);
+}
+
+.modal-body-text-option{
+  font-size: 16px;
+}
+
+.modal-body-select-padding{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 4px;
+  background-color: rgb(47,49,54);
+  cursor: pointer;
+}
+
+.modal-body-select-padding:hover{
+  background-color: rgb(69,73,80) !important;
+}
+
+.modal-body-input-radio{
+  order: 2;
+}
+
+.selected {
+  background-color: rgb(69,73,80);
+}
+
+.modal-input-title{
+  font-size: 12px;
+}
+
+.modal-body-content-private-channel-margin{
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-body-content-private-channel{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+.modal-body-content-private-channel label{
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+
+.modal-body-content-private-channel-description-margin{
+  margin-top: 8px;
+  color: var(--gray);
+}
+
+
+.fade{
+  background-color: rgba(8,9,10, 0.7) ;
+}
+
+.btn-criar-canal{
+  font-size: 14px !important;
+  border-radius: 3px !important;
+  padding: 10px 15px !important;
+  background-color: rgb(88,101,242) !important;
+  border: none !important;
+}
+
+.btn-criar-canal:hover, .btn-login:hover{
+  background-color: rgb(67, 76, 182) !important;
+}
+
+.btn-cancelar{
+  color: var(--white) !important;
+  text-decoration: none !important;
+  font-size: 14px !important;
+  margin-right: 10px;
+}
+
+.radio-button{
+  display: none;
+}
+
+.btn-login{
+  font-size: 14px !important;
+  border-radius: 3px !important;
+  padding: 10px 15px !important;
+  background-color: rgb(88,101,242) !important;
+  border: none !important;
+  width: 100%;
+}
