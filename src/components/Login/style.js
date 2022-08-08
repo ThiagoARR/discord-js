@@ -69,5 +69,37 @@ export const LoginBody = styled.div`
     }
 `;
 
+
+export const RegisterForm = styled.form`
+    width: 100%;
+`;
+
+export const RegisterBody = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    > div {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    > div > h5 {
+        font-size: 12px;   
+        color: var(--gray);   
+        font-weight: bold;
+        width: 100%; 
+    }
+
+    > div > input {
+        width: 100%;
+        background-color: var(--tertiary);
+        border-radius: 3px;
+        padding: 10px;
+        height: 40px;
+        color: var(--white);
+    }
+`;
+
 export const LoginFooter = styled.div`
 `;

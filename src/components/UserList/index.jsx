@@ -1,13 +1,27 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {UserList, Role} from './style'
 import User from '../UserRow';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 export default () => {
+    const {idServer} = useParams();
+    const [rolesList, setRolesList] = useState([]);
+    const [userList, setUserList] = useState([]);
+
+    useEffect(()=>{
+        axios.get(`http://localhost:3001/api/get/server_users/${idServer}`).then((response)=>{
+            setUserList(response.data);
+        })
+    },[idServer])
+
     return(
         <UserList>
             <Role>Mega - 4</Role>
-            <User nickname="MEGA 1"></User>
-            <User nickname="MEGA 2"></User>
+
+            {userList.length > 0 && userList.map((row) =>(<User nickname={row.name}></User>))}
+
+            {/* <User nickname="MEGA 2"></User>
             <User nickname="MEGA 3"></User>
             <User nickname="MEGA 4"></User>
 
@@ -37,7 +51,7 @@ export default () => {
             <User nickname="USER 17"></User>
             <User nickname="USER 18"></User>
             <User nickname="USER 19"></User>
-            <User nickname="USER 20"></User>
+            <User nickname="USER 20"></User> */}
         </UserList>
     )
 }

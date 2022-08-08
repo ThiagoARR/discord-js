@@ -26,7 +26,7 @@ export const Message = styled.div`
 `;
 export const Header = styled.div`
    display: flex;
-   align-items: center;
+   align-items: baseline;
    > strong{
        color: var(--white);
        font-size: 14px;

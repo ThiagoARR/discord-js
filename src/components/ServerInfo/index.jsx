@@ -1,24 +1,53 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {RadioButtonPress, Locker, ServerInfo, AddCategoryIcon, Category, ExpandIcon, UserInput, ModalHeader, ModalBody, HashtagIcon, VolumeIcon, RadioButton} from './style.js';
 import ChannelButtonText from '../ChannelButtonText';
 import ChannelButtonVoice from '../ChannelButtonVoice';
 import {Modal, Button} from 'react-bootstrap';
+import {useParams, NavLink} from 'react-router-dom';
+import axios from 'axios';
 
 function ServerInfor(props){
+    const {idServer} = useParams();
     const [modalShow, setModalShow] = useState(false);
     const [channelSection, setChannelSection] = useState("");
     const [channelType, setChannelType] = useState(1);
     const [userInputText, setUserInputText] = useState('');
     const [UserInputVoice, setUserInputVoice] = useState('');
-    const [channelText, setChannelText] = useState(["chat 1","chat 2","chat 3","chat 4"])
-    const [channelVoice, setChannelVoice] = useState(
+    const [channelText, setChannelText] = useState([]);
+    /* const [channelText, setChannelText] = useState(["chat 1","chat 2","chat 3","chat 4"]) */
+    const [channelVoice, setChannelVoice] = useState([]);
+    /* const [channelVoice, setChannelVoice] = useState(
         ["voice 1","voice 2","voice 3","voice 4","voice 5","voice 6","voice 7","voice 8",
             "voice 9",
             "voice 10",
             "voice 11",
-            "voice 12"]);
+            "voice 12"]); */
     const [displayText, setDisplayText] = useState(false);
     const [displayVoice, setDisplayVoice] = useState(false);
+
+    useEffect(()=>{
+        axios.get(`http://localhost:3001/api/get/canalText/${idServer}`).then((response)=>{
+            setChannelText(response.data);
+        })
+    },[userInputText])
+
+    useEffect(()=>{
+        axios.get(`http://localhost:3001/api/get/canalText/${idServer}`).then((response)=>{
+            setChannelText(response.data);
+        })
+    },[idServer])
+
+    useEffect(()=>{
+        axios.get(`http://localhost:3001/api/get/canalVoice/${idServer}`).then((response)=>{
+            setChannelVoice(response.data);
+        })
+    },[UserInputVoice])
+
+    useEffect(()=>{
+        axios.get(`http://localhost:3001/api/get/canalVoice/${idServer}`).then((response)=>{
+            setChannelVoice(response.data);
+        })
+    },[idServer])
 
     const toggleModal = () => {
         setModalShow(prev => !prev);
@@ -31,7 +60,11 @@ function ServerInfor(props){
 
     const insertChannel = () => {
         if(userInputText != ''){
-            setChannelText(channelText => [...channelText, userInputText])
+            axios.post("http://localhost:3001/api/post/channel",{
+                name: userInputText,
+                servers_id: idServer,
+                channel_type_id: channelType
+            })
             setUserInputText('');
             setModalShow(prev => !prev);
         }else{
@@ -43,7 +76,11 @@ function ServerInfor(props){
     const insertChannelKey = (event) => {
         if(event.key === 'Enter'){
             if(userInputText != ''){
-                setChannelText(channelText => [...channelText, userInputText])
+                axios.post("http://localhost:3001/api/post/channel",{
+                    name: userInputText,
+                    servers_id: idServer,
+                    channel_type_id: channelType
+                })
                 setUserInputText('');
                 setModalShow(prev => !prev);
             }else{
@@ -68,7 +105,7 @@ function ServerInfor(props){
                 <AddCategoryIcon onClick={toggleModal}/>
             </Category>
             <>
-                {channelText.length > 0 && channelText.map((row) => (<ChannelButtonText channelName={row}/>))}
+                {channelText.length > 0 && channelText.map((row) => (<NavLink to={`/channels/${idServer}/${row.id}`}><ChannelButtonText channelName={row.name}/></NavLink>))}
                 {/* {displayText && <UserInput
                     type="text"
                     value={userInputText}
@@ -163,44 +200,13 @@ function ServerInfor(props){
                         </div>
                     </Modal.Footer>
             </Modal>
-                    
-            {/* <Modal 
-                isOpen={modalShow}
-                onRequestClose={openModal}
-                aria={{labelledby: 'Heading'}}
-                style={customStyles}
-                overlayClassName="Overlay"
-                shouldCloseOnOverlayClick={true}
-                shouldCloseOnEsc={true}
-                closeTimeoutMS={300}>
-                    <ModalHeader>
-                        <h1>Modal</h1>
-                        <span>&times;</span>
-                    </ModalHeader>
-                    <ModalBody>
-                        <div className='modal-option'>
-                            <HashtagIcon />
-                            <div>2</div>
-                            <div>3</div>
-                        </div>
-                        <div className='modal-option selected'>
-                            <VolumeIcon />
-                            <div>5</div>
-                            <div>6</div>
-                        </div>
-                    </ModalBody>
-            </Modal> */}
-
-
-             {/* <Modal modalShow={modalShow} setModalShow={setModalShow}
-            /> */}
             
             <Category>
                 <span><ExpandIcon/>canais de voz</span>
                 <AddCategoryIcon onClick={toggleModal}/>
             </Category>
                 <>
-                {channelVoice.length > 0 && channelVoice.map((row) => (<ChannelButtonVoice channelName={row}/>))}
+                {channelVoice.length > 0 && channelVoice.map((row) => (<ChannelButtonVoice channelName={row.name}/>))}
                     {/* {displayVoice && <UserInput
                     type="text"
                     value={this.state.userInputVoice}

@@ -19,7 +19,12 @@ function App() {
 
   return (
     <>
-      <Layout />
+      <Routes>
+        <Route path="/login" exact element={<Login setUser={setUser} setPass={setPass} pass={pass} user={user} errMsg={errMsg} setErrMsg={setErrMsg} setLogin={setLogin}/>}/>
+        <Route path="/channels/:idServer" exact element={<Layout />}/>
+        <Route path="/channels/:idServer/:idCanal" exact element={<Layout />}/>
+        <Route path="/channels/@me" exact element={<Layout />}/>
+      </Routes>
       <GlobalStyles/>
     {/* {login ? <Layout/> : <Login setLogin={setLogin} user={user} setUser={setUser} pass={pass} setPass={setPass} setAuth={setAuth} setErrMsg={setErrMsg} />}
     <GlobalStyles/> */}
